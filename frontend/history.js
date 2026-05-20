@@ -11,7 +11,7 @@ fetch("http://localhost:8000/predictions", {
     headers: {
         "Content-Type": "application/json",
         "token": token,
-        "api-key": "your_api_key_here"
+        "api-key": "demo-key"
     }
 })
 .then(res => {

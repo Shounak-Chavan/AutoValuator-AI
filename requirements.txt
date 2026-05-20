@@ -13,6 +13,7 @@ passlib
 bcrypt==4.0.1
 pydantic-settings
 pytest
+pytest-cov
 httpx
 redis
 redis[async]

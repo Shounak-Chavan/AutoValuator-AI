@@ -14,7 +14,7 @@ function predict() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "api-key": "your_api_key_here",
+            "api-key": "demo-key",
             "token": localStorage.getItem("token")
             },
         body: JSON.stringify({

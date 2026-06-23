@@ -44,3 +44,7 @@ Instrumentator().instrument(app).expose(app)
 
 # exception handlers
 register_exception_handlers(app)
+
+@app.get("/")
+def root():
+    return {"message": "AutoValuator API Running"}

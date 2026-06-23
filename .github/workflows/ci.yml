@@ -14,6 +14,18 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
 
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    env:
+      API_KEY: test-api-key
+      JWT_SECRET_KEY: test-secret-key
+      REDIS_URL: redis://localhost:6379/0
+      DATABASE_URL: sqlite:///./test.db
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -28,18 +40,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests
+      - name: Run Unit Tests
         run: |
           pytest tests/ -v
 
-      - name: Validate Python Syntax
+      - name: Validate Python Code
         run: |
-          python -m compileall .
+          python -m compileall app
+
+      - name: Verify FastAPI Application
+        run: |
+          python -c "from app.main import app; print('FastAPI app loaded successfully')"
 
       - name: Build Docker Image
         run: |
           docker build -t autovaluator .
-
-      - name: Verify FastAPI Import
-        run: |
-          python -c "from app.main import app; print('FastAPI app loaded successfully')"

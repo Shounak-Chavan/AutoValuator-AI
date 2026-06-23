@@ -18,7 +18,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from app.main import app
 from app.db.base import Base
-from app.core.dependencies import get_db, get_api_key, get_current_user
+from app.core.dependencies import  get_api_key, get_current_user
+from app.db.session import get_db
 
 
 # Test Database Setup
